@@ -102,7 +102,7 @@ export default function SudokuGame() {
       <Navigation />
       <main className="flex-grow flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-lg">
-          <ErrorCounter errors={errors} />
+          <ErrorCounter errors={errors} difficulty={difficulty as string} />
           <SudokuBoard
             board={board}
             selectedCell={selectedCell}
