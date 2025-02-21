@@ -1,51 +1,36 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Navigation } from "../components/home/Navigation";
-import { SudokuBoard } from "../components/game/SudokuBoard";
-import { NumberPad } from "../components/game/NumberPad";
-import { SudokuControls } from "../components/game/SudokuControls";
-import { ErrorCounter } from "../components/game/ErrorCounter";
-import { Footer } from "../components/home/Footer";
-
-// Helper function to create an empty 9x9 Sudoku grid
-const createEmptyGrid = () =>
-  Array(9)
-    .fill(null)
-    .map(() => Array(9).fill(0));
-
-// Pre-defined Sudoku puzzle (0 represents empty cells)
-const initialPuzzle = [
-  [5, 3, 0, 0, 7, 0, 0, 0, 0],
-  [6, 0, 0, 1, 9, 5, 0, 0, 0],
-  [0, 9, 8, 0, 0, 0, 0, 6, 0],
-  [8, 0, 0, 0, 6, 0, 0, 0, 3],
-  [4, 0, 0, 8, 0, 3, 0, 0, 1],
-  [7, 0, 0, 0, 2, 0, 0, 0, 6],
-  [0, 6, 0, 0, 0, 0, 2, 8, 0],
-  [0, 0, 0, 4, 1, 9, 0, 0, 5],
-  [0, 0, 0, 0, 8, 0, 0, 7, 9],
-];
-
-// Solution to the puzzle
-const solution = [
-  [5, 3, 4, 6, 7, 8, 9, 1, 2],
-  [6, 7, 2, 1, 9, 5, 3, 4, 8],
-  [1, 9, 8, 3, 4, 2, 5, 6, 7],
-  [8, 5, 9, 7, 6, 1, 4, 2, 3],
-  [4, 2, 6, 8, 5, 3, 7, 9, 1],
-  [7, 1, 3, 9, 2, 4, 8, 5, 6],
-  [9, 6, 1, 5, 3, 7, 2, 8, 4],
-  [2, 8, 7, 4, 1, 9, 6, 3, 5],
-  [3, 4, 5, 2, 8, 6, 1, 7, 9],
-];
+import { useParams } from "next/navigation";
+import { sudokus, Difficulty } from "@/app/data/sudokus";
+import { Navigation } from "@/app/components/home/Navigation";
+import { SudokuBoard } from "@/app/components/game/SudokuBoard";
+import { NumberPad } from "@/app/components/game/NumberPad";
+import { SudokuControls } from "@/app/components/game/SudokuControls";
+import { ErrorCounter } from "@/app/components/game/ErrorCounter";
+import { Footer } from "@/app/components/home/Footer";
 
 export default function SudokuGame() {
-  const [board, setBoard] = useState(initialPuzzle);
+  const { difficulty } = useParams();
+  const [board, setBoard] = useState<number[][]>([]);
+  const [solution, setSolution] = useState<number[][]>([]);
   const [selectedCell, setSelectedCell] = useState<[number, number] | null>(
     null,
   );
   const [errors, setErrors] = useState(0);
+
+  useEffect(() => {
+    if (
+      difficulty &&
+      ["easy", "medium", "hard", "expert"].includes(difficulty as string)
+    ) {
+      const typedDifficulty = difficulty as Difficulty;
+      const puzzles = sudokus[typedDifficulty];
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      setBoard(randomPuzzle.puzzle);
+      setSolution(randomPuzzle.solution);
+    }
+  }, [difficulty]);
 
   useEffect(() => {
     if (errors === 3) {
@@ -54,7 +39,7 @@ export default function SudokuGame() {
   }, [errors]);
 
   const handleCellClick = (row: number, col: number) => {
-    if (initialPuzzle[row][col] === 0) {
+    if (board[row][col] === 0) {
       setSelectedCell([row, col]);
     }
   };
@@ -77,18 +62,25 @@ export default function SudokuGame() {
   const handleDelete = () => {
     if (selectedCell) {
       const [row, col] = selectedCell;
-      if (initialPuzzle[row][col] === 0) {
-        const newBoard = board.map((row) => [...row]);
-        newBoard[row][col] = 0;
-        setBoard(newBoard);
-      }
+      const newBoard = board.map((row) => [...row]);
+      newBoard[row][col] = 0;
+      setBoard(newBoard);
     }
   };
 
   const resetGame = () => {
-    setBoard(initialPuzzle);
-    setSelectedCell(null);
-    setErrors(0);
+    if (
+      difficulty &&
+      ["easy", "medium", "hard", "expert"].includes(difficulty as string)
+    ) {
+      const typedDifficulty = difficulty as Difficulty;
+      const puzzles = sudokus[typedDifficulty];
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      setBoard(randomPuzzle.puzzle);
+      setSolution(randomPuzzle.solution);
+      setSelectedCell(null);
+      setErrors(0);
+    }
   };
 
   const handleHint = () => {
@@ -111,7 +103,7 @@ export default function SudokuGame() {
           <SudokuBoard
             board={board}
             selectedCell={selectedCell}
-            initialPuzzle={initialPuzzle}
+            initialPuzzle={board}
             handleCellClick={handleCellClick}
           />
           <NumberPad handleNumberClick={handleNumberClick} />

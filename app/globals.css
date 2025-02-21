@@ -2,17 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    font-family: "Geist Mono", monospace;
-}
-
 html,
 body {
     height: 100%;
     margin: 0;
-    overflow: hidden; /* Scrollen deaktivieren */
-    touch-action: manipulation; /* Pinch- und Doppeltap-Zoom deaktivieren */
-    -ms-touch-action: manipulation; /* Unterstützung für alte Microsoft-Browser */
-    overscroll-behavior: none; /* Verhindert Pull-to-Refresh auf mobilen Geräten */
-    user-select: none; /* Verhindert Auswahl, um Zoom durch Doppeltippen zu vermeiden */
+    overflow: hidden;
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    overscroll-behavior: none;
+    user-select: none;
+    font-family: "Geist Mono", monospace;
 }
