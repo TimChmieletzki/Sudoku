@@ -1,3 +1,3 @@
-#Sudoku
+# Sudoku
 
-Sudoku App created with Next.js
+## Sudoku App created with Next.js
