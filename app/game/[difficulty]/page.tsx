@@ -9,7 +9,6 @@ import { NumberPad } from "@/app/components/game/NumberPad";
 import { SudokuControls } from "@/app/components/game/SudokuControls";
 import { ErrorCounter } from "@/app/components/game/ErrorCounter";
 import { Footer } from "@/app/components/home/Footer";
-import { useCallback } from "react";
 
 export default function SudokuGame() {
   const { difficulty } = useParams();
@@ -20,7 +19,7 @@ export default function SudokuGame() {
   );
   const [errors, setErrors] = useState(0);
 
-  const resetGame = useCallback(() => {
+  useEffect(() => {
     if (
       difficulty &&
       ["easy", "medium", "hard", "expert"].includes(difficulty as string)
@@ -30,8 +29,6 @@ export default function SudokuGame() {
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
       setBoard(randomPuzzle.puzzle);
       setSolution(randomPuzzle.solution);
-      setSelectedCell(null);
-      setErrors(0);
     }
   }, [difficulty]);
 
@@ -39,7 +36,7 @@ export default function SudokuGame() {
     if (errors === 3) {
       resetGame();
     }
-  }, [errors, resetGame]);
+  }, [errors]);
 
   const handleCellClick = (row: number, col: number) => {
     if (board[row][col] === 0) {
@@ -68,6 +65,21 @@ export default function SudokuGame() {
       const newBoard = board.map((row) => [...row]);
       newBoard[row][col] = 0;
       setBoard(newBoard);
+    }
+  };
+
+  const resetGame = () => {
+    if (
+      difficulty &&
+      ["easy", "medium", "hard", "expert"].includes(difficulty as string)
+    ) {
+      const typedDifficulty = difficulty as Difficulty;
+      const puzzles = sudokus[typedDifficulty];
+      const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      setBoard(randomPuzzle.puzzle);
+      setSolution(randomPuzzle.solution);
+      setSelectedCell(null);
+      setErrors(0);
     }
   };
 
