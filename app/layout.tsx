@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Sudoku - The Game",
-  description: "Made in Germany",
+  description: "Made by Tim with Next.js",
 };
 
 export default function RootLayout({
@@ -25,6 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover"
+        />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
       </head>
       <body
