@@ -5,3 +5,9 @@
 body {
     font-family: "Geist Mono", monospace;
 }
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}

@@ -4,7 +4,7 @@ import { Navigation } from "./components/home/Navigation";
 
 export default function Home() {
   return (
-    <div>
+    <div className="flex flex-col h-screen">
       <Navigation />
       <MainContent />
       <Footer />

@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export function Navigation() {
   return (
-    <header className="fixed top-0 w-full border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
-      <nav className="mx-auto flex h-16 max-w-screen-xl items-center justify-between px-6">
+    <header className="w-full h-16 border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
+      <nav className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-6">
         <div className="flex items-center space-x-4">
           <Image
             src="/logo.svg"
@@ -12,7 +12,6 @@ export function Navigation() {
             height={32}
             priority={true}
           />
-          <span className="font-mono text-xl font-bold">Sudoku v0.7</span>
         </div>
         <div className="flex items-center space-x-4">
           <a
