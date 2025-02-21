@@ -36,7 +36,7 @@ export function SudokuBoard({
             onClick={() => handleCellClick(rowIndex, colIndex)}
             disabled={initialPuzzle[rowIndex][colIndex] !== 0}
           >
-            {cell !== 0 ? cell : ""}
+            {cell !== 0 ? cell : "\u00A0"}
           </button>
         )),
       )}

@@ -27,8 +27,11 @@ export default function SudokuGame() {
       const typedDifficulty = difficulty as Difficulty;
       const puzzles = sudokus[typedDifficulty];
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+
       setBoard(randomPuzzle.puzzle);
       setSolution(randomPuzzle.solution);
+      setSelectedCell(null);
+      setErrors(0);
     }
   }, [difficulty]);
 

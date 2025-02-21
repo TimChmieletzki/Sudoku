@@ -1,17 +1,21 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export function Navigation() {
   return (
     <header className="w-full h-16 border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
       <nav className="mx-auto flex h-full max-w-screen-xl items-center justify-between px-6">
         <div className="flex items-center space-x-4">
-          <Image
-            src="/logo.svg"
-            alt="Sudoku Logo"
-            width={32}
-            height={32}
-            priority={true}
-          />
+          <Link href="/">
+            <Image
+              src="/logo.svg"
+              alt="Sudoku Logo"
+              width={32}
+              height={32}
+              priority={true}
+              className="cursor-pointer"
+            />
+          </Link>
         </div>
         <div className="flex items-center space-x-4">
           <a
