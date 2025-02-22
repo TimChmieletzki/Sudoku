@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import { Trash2, RotateCcw, Lightbulb } from "lucide-react";
 
 interface SudokuControlsProps {
