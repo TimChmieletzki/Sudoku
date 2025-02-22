@@ -22,6 +22,7 @@ export default function SudokuGame() {
   const [isCompleted, setIsCompleted] = useState(false);
   const [time, setTime] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const [initialBoard, setInitialBoard] = useState<number[][]>([]);
 
   const restartTimer = () => {
     if (timerRef.current) {
@@ -43,16 +44,9 @@ export default function SudokuGame() {
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
 
       setBoard(randomPuzzle.puzzle);
+      setInitialBoard(randomPuzzle.puzzle.map((row) => [...row]));
       setSolution(randomPuzzle.solution);
-      setSelectedCell(null);
-      setErrors(0);
-      setIsCompleted(false);
-      restartTimer();
     }
-
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
   }, [difficulty]);
 
   useEffect(() => {
@@ -73,7 +67,7 @@ export default function SudokuGame() {
   }, [board]);
 
   const handleCellClick = (row: number, col: number) => {
-    if (board[row][col] === 0) {
+    if (initialBoard[row][col] === 0) {
       setSelectedCell([row, col]);
     }
   };
@@ -110,6 +104,8 @@ export default function SudokuGame() {
       const typedDifficulty = difficulty as Difficulty;
       const puzzles = sudokus[typedDifficulty];
       const randomPuzzle = puzzles[Math.floor(Math.random() * puzzles.length)];
+      setBoard(randomPuzzle.puzzle);
+      setInitialBoard(randomPuzzle.puzzle.map((row) => [...row]));
       setBoard(randomPuzzle.puzzle);
       setSolution(randomPuzzle.solution);
       setSelectedCell(null);
@@ -149,7 +145,8 @@ export default function SudokuGame() {
           <SudokuBoard
             board={board}
             selectedCell={selectedCell}
-            initialPuzzle={board}
+            initialPuzzle={initialBoard}
+            solution={solution} // Neue Prop
             handleCellClick={handleCellClick}
           />
           <NumberPad handleNumberClick={handleNumberClick} />

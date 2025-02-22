@@ -42,7 +42,7 @@ export function CompletionModal({
         </p>
         <Link href="/">
           <div className="flex justify-center">
-            <button className="px-4 py-2 bg-black text-white rounded hover:bg-neutral-800 flex items-center justify-center gap-2">
+            <button className="px-4 py-2 bg-black text-white rounded hover:bg-gray-800 flex items-center justify-center gap-2">
               <Home className="h-5 w-5" />
               <span className="text-center">Home</span>
             </button>
