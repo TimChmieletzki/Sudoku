@@ -32,9 +32,9 @@ export function SudokuBoard({
                 : cell !== 0 && cell !== solution[rowIndex][colIndex]
                   ? "text-red-600 font-medium text-xl"
                   : "text-neutral-400 font-medium text-xl"
-            } ${(rowIndex + 1) % 3 === 0 && rowIndex < 8 ? "border-b-1 border-b-neutral-600" : ""} ${
+            } ${(rowIndex + 1) % 3 === 0 && rowIndex < 8 ? "border-b-1 border-b-neutral-400" : ""} ${
               (colIndex + 1) % 3 === 0 && colIndex < 8
-                ? "border-r-1 border-r-neutral-600"
+                ? "border-r-1 border-r-neutral-400"
                 : ""
             }`}
             onClick={() => handleCellClick(rowIndex, colIndex)}
