@@ -11,7 +11,7 @@ export function SudokuBoard({
   board,
   selectedCell,
   initialPuzzle,
-  solution, // Neue Prop
+  solution,
   handleCellClick,
 }: SudokuBoardProps) {
   return (

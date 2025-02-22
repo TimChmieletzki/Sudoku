@@ -146,7 +146,7 @@ export default function SudokuGame() {
             board={board}
             selectedCell={selectedCell}
             initialPuzzle={initialBoard}
-            solution={solution} // Neue Prop
+            solution={solution}
             handleCellClick={handleCellClick}
           />
           <NumberPad handleNumberClick={handleNumberClick} />

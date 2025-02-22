@@ -1,23 +1,42 @@
 "use client";
-
 import { useRouter } from "next/navigation";
-import { Button } from "../ui/button";
+import { Button } from "@/app/components/ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+} from "../ui/DropdownMenu";
+import { ChevronDown, Trophy } from "lucide-react";
 
 export function DifficultyButton() {
   const router = useRouter();
 
   const difficulties = [
-    { name: "Einfach", value: "easy" },
-    { name: "Mittel", value: "medium" },
-    { name: "Schwer", value: "hard" },
-    { name: "Experte", value: "expert" },
+    {
+      name: "Einfach",
+      value: "easy",
+      description: "Perfekt zum Einstieg",
+      color: "text-blue-600",
+    },
+    {
+      name: "Mittel",
+      value: "medium",
+      description: "Für Fortgeschrittene",
+      color: "text-green-600",
+    },
+    {
+      name: "Schwer",
+      value: "hard",
+      description: "Echte Herausforderung",
+      color: "text-yellow-600",
+    },
+    {
+      name: "Experte",
+      value: "expert",
+      description: "Nur für Profis",
+      color: "text-red-600",
+    },
   ];
 
   const handleDifficultySelect = (difficulty: string) => {
@@ -27,19 +46,26 @@ export function DifficultyButton() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="bg-black text-white hover:bg-neutral-800">
+        <Button className="bg-black text-white hover:bg-neutral-800 px-6 py-2">
+          <Trophy className="mr-2 h-4 w-4" />
           Spielen
           <ChevronDown className="ml-2 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {difficulties.map((diff) => (
-          <DropdownMenuItem
-            key={diff.value}
-            onClick={() => handleDifficultySelect(diff.value)}
-          >
-            {diff.name}
-          </DropdownMenuItem>
+      <DropdownMenuContent className="w-56">
+        {difficulties.map((diff, index) => (
+          <div key={diff.value}>
+            <DropdownMenuItem
+              onClick={() => handleDifficultySelect(diff.value)}
+              className="py-3 px-4 cursor-pointer hover:bg-neutral-100 flex flex-col items-start"
+            >
+              <span className={`font-medium ${diff.color}`}>{diff.name}</span>
+              <span className="text-xs text-gray-500">{diff.description}</span>
+            </DropdownMenuItem>
+            {index < difficulties.length - 1 && (
+              <div className="h-px bg-gray-200" />
+            )}
+          </div>
         ))}
       </DropdownMenuContent>
     </DropdownMenu>
