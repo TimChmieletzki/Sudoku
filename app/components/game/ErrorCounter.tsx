@@ -1,22 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
 
 interface ErrorCounterProps {
   errors: number;
   difficulty: string;
+  time: number;
 }
 
-export function ErrorCounter({ errors, difficulty }: ErrorCounterProps) {
-  const [time, setTime] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+export function ErrorCounter({ errors, difficulty, time }: ErrorCounterProps) {
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const secs = seconds % 60;
