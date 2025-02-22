@@ -2,14 +2,14 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
-import { CompletionModal } from "@/app/components/game/CompletionModal";
-import { sudokus, Difficulty } from "@/app/data/sudokus";
-import { Navigation } from "@/app/components/home/Navigation";
-import { SudokuBoard } from "@/app/components/game/SudokuBoard";
-import { NumberPad } from "@/app/components/game/NumberPad";
-import { SudokuControls } from "@/app/components/game/SudokuControls";
-import { ErrorCounter } from "@/app/components/game/ErrorCounter";
-import { Footer } from "@/app/components/home/Footer";
+import { CompletionModal } from "../../components/game/CompletionModal";
+import { sudokus, Difficulty } from "../../data/sudokus";
+import { Navigation } from "../../components/home/Navigation";
+import { SudokuBoard } from "../../components/game/SudokuBoard";
+import { NumberPad } from "../../components/game/NumberPad";
+import { SudokuControls } from "../../components/game/SudokuControls";
+import { ErrorCounter } from "../../components/game/ErrorCounter";
+import { Footer } from "../../components/home/Footer";
 
 export default function SudokuGame() {
   const { difficulty } = useParams();
