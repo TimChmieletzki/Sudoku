@@ -6,10 +6,8 @@ html,
 body {
     height: 100%;
     margin: 0;
-    overflow: hidden;
     touch-action: manipulation;
     -ms-touch-action: manipulation;
-    overscroll-behavior: none;
     user-select: none;
     font-family: "Geist Mono", monospace;
 }
