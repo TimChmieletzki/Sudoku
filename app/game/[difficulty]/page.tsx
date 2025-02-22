@@ -46,6 +46,7 @@ export default function SudokuGame() {
       setBoard(randomPuzzle.puzzle);
       setInitialBoard(randomPuzzle.puzzle.map((row) => [...row]));
       setSolution(randomPuzzle.solution);
+      restartTimer();
     }
   }, [difficulty]);
 
