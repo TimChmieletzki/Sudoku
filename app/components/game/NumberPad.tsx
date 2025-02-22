@@ -12,7 +12,7 @@ export function NumberPad({ handleNumberClick }: NumberPadProps) {
         <Button
           key={num}
           onClick={() => handleNumberClick(num)}
-          className="w-full h-12 text-xl font-semibold bg-white border border-gray-200 hover:bg-gray-200 text-gray-600"
+          className="w-full h-12 text-xl font-medium bg-white border border-neutral-200 hover:bg-neutral-200 text-neutral-600"
         >
           {num}
         </Button>

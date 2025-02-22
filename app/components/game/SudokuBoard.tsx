@@ -24,17 +24,17 @@ export function SudokuBoard({
               selectedCell &&
               selectedCell[0] === rowIndex &&
               selectedCell[1] === colIndex
-                ? "bg-gray-200"
+                ? "bg-neutral-200"
                 : "bg-white"
             } ${
               initialPuzzle[rowIndex][colIndex] !== 0
-                ? "text-gray-600 font-semibold text-xl"
+                ? "text-neutral-600 font-medium text-xl"
                 : cell !== 0 && cell !== solution[rowIndex][colIndex]
-                  ? "text-red-600 font-semibold text-xl"
-                  : "text-gray-400 font-semibold text-xl"
-            } ${(rowIndex + 1) % 3 === 0 && rowIndex < 8 ? "border-b-2 border-b-gray-400" : ""} ${
+                  ? "text-red-600 font-medium text-xl"
+                  : "text-neutral-400 font-medium text-xl"
+            } ${(rowIndex + 1) % 3 === 0 && rowIndex < 8 ? "border-b-2 border-b-neutral-400" : ""} ${
               (colIndex + 1) % 3 === 0 && colIndex < 8
-                ? "border-r-2 border-r-gray-400"
+                ? "border-r-2 border-r-neutral-400"
                 : ""
             }`}
             onClick={() => handleCellClick(rowIndex, colIndex)}

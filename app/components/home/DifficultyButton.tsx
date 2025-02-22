@@ -60,10 +60,12 @@ export function DifficultyButton() {
               className="py-3 px-4 cursor-pointer hover:bg-neutral-100 flex flex-col items-start"
             >
               <span className={`font-medium ${diff.color}`}>{diff.name}</span>
-              <span className="text-xs text-gray-500">{diff.description}</span>
+              <span className="text-xs text-neutral-500">
+                {diff.description}
+              </span>
             </DropdownMenuItem>
             {index < difficulties.length - 1 && (
-              <div className="h-px bg-gray-200" />
+              <div className="h-px bg-neutral-200" />
             )}
           </div>
         ))}
